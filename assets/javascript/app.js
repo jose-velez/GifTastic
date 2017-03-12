@@ -6,7 +6,7 @@
 
 var apiKey = "dc6zaTOxFJmzC";
 var topic = ["animals","nature", "beach", "cars", "superheroe", "technology", "anger", "space", "funny", "disney"];
-var queryUrl = "http://api.giphy.com/v1/gifs/search?q="+ search + "/&api_key=dc6zaTOxFJmzC&limit=10";
+var queryUrl = "https://api.giphy.com/v1/gifs/search?q="+ search + "/&api_key=dc6zaTOxFJmzC&limit=10";
 var search = "";
 var state;
 var animate;
@@ -76,18 +76,19 @@ $("#gif-view").on("click", '.gifImg' ,function(){
 $('#buttons-view').on('click', '.gifButton', function(event) {
 	var buttonClicked = $(event.target).attr('data');
 	search= buttonClicked;
-	queryUrl = "http://api.giphy.com/v1/gifs/search?q="+ search + "/&api_key=dc6zaTOxFJmzC&limit=10";
+	queryUrl = "https://api.giphy.com/v1/gifs/search?q="+ search + "/&api_key=dc6zaTOxFJmzC&limit=10";
 	$.ajax({
 		url: queryUrl,
 		method: "GET",
 	}).done(function(response)
 	{
+		
 		var result = response.data;
 		for(var i=0; i<result.length; i++)
 		{
 			var givDiv = $("<div class = 'item'>")
 			var img = $("<img>");
-			img.attr("class", "gifImg col-md-6 col-sm-6")
+			img.attr("class", "gifImg col-md-4 col-sm-4")
 			img.attr("src", result[i].images.fixed_height_still.url);
 			img.attr("data-image", "still");
 			img.attr("data-still", result[i].images.fixed_height_still.url);

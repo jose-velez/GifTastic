@@ -6,22 +6,24 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 </head>
 <body>
 	<div class="container col-md-12">
 		<header class="jumbotron col-md-12 head"><h1 class="title">Giphy Giphy Giphy</h1></header>
 
-	<!--Place of the button-->	
+		<!--Place of the button-->	
 		<div id="buttons-view"></div>
-
+		
+		<!--Gif Input Form-->
 		<form id="gifForm">
 			<label for="gif-input">Add a new gif</label>
 			<input id="gif" type="text" name="gif-input"><br>
-
-			<input id="add-gif" type="submit" value="Add a new gif">	
+			<input id="add-gif" type="submit" value="Add a new gif" class="searchBtn">	
 		</form>
 
+		<!-- div to place the gif-->
 		<div id="gif-view" class="gif-view"></div>
 
 	</div>
