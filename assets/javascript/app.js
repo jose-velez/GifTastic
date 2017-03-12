@@ -37,7 +37,7 @@ $("#add-gif").on("click", function(){
 	console.log(gif);
 	console.log(topic);
 	var button = $("<button>")
-	button.attr("class", "gifButton")
+	button.attr("class", "gifButton");
 	button.text(gif);
 	button.attr("data", gif);
 	$("#buttons-view").append(button); 
@@ -45,31 +45,38 @@ $("#add-gif").on("click", function(){
 }) 
 
 createButton();
-// Api call with ajax
-$(".gifButton").on("click", function()
-{
-	
 
-});
-
+// Function to play or pause the gif 
 $("#gif-view").on("click", '.gifImg' ,function(){
+	// get the status form the image to se if it's moving or not 
 	state = $(this).attr("data-image");
 	console.log(state);
+	//if it's not movig it will animate 
 	if(state === "still")
 	{
+		animate = $(this).attr("data-moving")
 		// change the source from the still image to the moving image
-		//$(this).attr("src",)
+		$(this).attr("src",animate);
+
 
 		// Change the data image to moving 
+		state = $(this).attr("data-image", "moving");
 
+	}
+	// if it's moving the it's going to make it still 
+	else if(state === "moving")
+	{
+		still = $(this).attr("data-still");
+		$(this).attr("src", still);
+		state = $(this).attr("data-image", "still");
 	}
 });
 
+// Api call with ajax
 $('#buttons-view').on('click', '.gifButton', function(event) {
 	var buttonClicked = $(event.target).attr('data');
 	search= buttonClicked;
 	queryUrl = "http://api.giphy.com/v1/gifs/search?q="+ search + "/&api_key=dc6zaTOxFJmzC&limit=10";
-	// console.log(search);
 	$.ajax({
 		url: queryUrl,
 		method: "GET",
@@ -80,7 +87,7 @@ $('#buttons-view').on('click', '.gifButton', function(event) {
 		{
 			var givDiv = $("<div class = 'item'>")
 			var img = $("<img>");
-			img.attr("class", "gifImg")
+			img.attr("class", "gifImg col-md-6 col-sm-6")
 			img.attr("src", result[i].images.fixed_height_still.url);
 			img.attr("data-image", "still");
 			img.attr("data-still", result[i].images.fixed_height_still.url);
@@ -88,9 +95,10 @@ $('#buttons-view').on('click', '.gifButton', function(event) {
 			givDiv.append(img);
 			$("#gif-view").prepend(givDiv);
 		}
-
+		
 		
 	})
+
 	console.log(buttonClicked);
 });
 	
